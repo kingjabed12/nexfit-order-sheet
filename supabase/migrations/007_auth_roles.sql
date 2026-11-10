@@ -194,6 +194,8 @@ begin
     values(new.id,'Customer added',new.phone,coalesce(actor,'System'),actor_id);
     return new;
   else
+    select p.username into actor from public.nexfit_user_profiles p where p.user_id=actor_id;
+    if actor is null then select m.name into actor from public.moderators m where m.id=new.moderator_id; end if;
     if old.status is distinct from new.status or old.notes is distinct from new.notes
        or old.phone is distinct from new.phone or old.moderator_id is distinct from new.moderator_id then
       insert into public.activity_logs(customer_id,action,details,actor_name,actor_user_id)
