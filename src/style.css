@@ -16,3 +16,36 @@
 .reportcounts .green{background:#e2f5e9;color:#197344}.reportcounts .amber{background:#fff3d9;color:#95620c}.reportcounts .red{background:#ffebea;color:#bd403b}
 .progress{height:6px;border-radius:10px;background:#edf1ed;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,#b68a36,#e6c77d);border-radius:10px}
 @media(max-width:680px){.logo img{width:158px;height:48px}.quickstats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.quickstats>div{padding:11px}.quickstats b{font-size:20px}.modreport{padding:13px 12px}.modreporthead{font-size:12px}}
+
+/* Premium NEXFIT gold / charcoal theme */
+:root{--nex-gold:#c69a45;--nex-gold-light:#f3dfad;--nex-ink:#17211b;--nex-cream:#fbf8f0}
+body{background:#f7f5ef;color:var(--nex-ink)}
+header{background:linear-gradient(110deg,#101713 0%,#1c2820 72%,#352b19 100%);border-bottom:1px solid #b88a35}
+.logo img{width:190px;height:54px;object-fit:contain;object-position:left center;filter:drop-shadow(0 2px 5px #0008)}
+.primary{background:linear-gradient(135deg,#202a22,#101713);border:1px solid #b88a35;color:#f4d994;box-shadow:0 3px 10px #8e6a251c}
+.soft{background:#f7efdD;color:#76551d;border:1px solid #e5d2a8}
+button{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease}
+button:hover{transform:translateY(-2px);box-shadow:0 5px 13px #1b241b18;border-color:#c49a4d}
+button:active{transform:translateY(0) scale(.97);box-shadow:none}
+button:focus-visible{outline:3px solid #d8b76d80;outline-offset:2px}
+.primary:hover{background:linear-gradient(135deg,#34412f,#1c281e);box-shadow:0 6px 16px #b48a3b30}
+.soft:hover{background:#f1e4c4}
+.hero small{color:#9a742d}
+.hero h1{letter-spacing:-.7px}
+.quickstats>div,.panel,.stat{border-color:#e9dfc9;box-shadow:0 3px 14px #4b371008}
+.quickstats svg{color:#b18431}
+.tabs button.active{color:#79551b;border-color:#c69a45;background:#fffaf0}
+.status.green,.reportcounts .green{background:#edf5e9;color:#476d37}
+.status.amber,.reportcounts .amber{background:#fbf1d9;color:#9b711e}
+.status.red,.reportcounts .red{background:#f8e9e4;color:#a34b3e}
+.phone{color:#80601f}
+.assigned{color:#816329}
+.modal{border:1px solid #ddc58e;box-shadow:0 22px 70px #080d0990;animation:modal-in .22s ease-out}
+.record{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.record:hover{transform:translateY(-2px);border-color:#d9c28d;box-shadow:0 7px 18px #6b542014}
+.toast{border:1px solid #b88a35;box-shadow:0 9px 30px #1118;animation:toast-in .25s ease-out}
+.progress i{background:linear-gradient(90deg,#a77928,#e7cb84)}
+@keyframes modal-in{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toast-in{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
+@media(max-width:680px){.logo img{width:166px;height:48px}.quickstats>div{border-color:#e8dec8}.bottom{background:#fffdf8;border-top:1px solid #dfcfaa}.bottom .chosen{color:#9b712a}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
