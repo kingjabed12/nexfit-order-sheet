@@ -48,7 +48,7 @@ $$;
 
 create or replace function public.nexfit_bootstrap_admin(p_setup_code text)
 returns jsonb language plpgsql security definer
-set search_path = public, auth, public
+set search_path = public, auth, extensions
 as $$
 declare stored_hash bytea;
 begin
@@ -70,7 +70,7 @@ $$;
 create or replace function public.nexfit_admin_create_moderator(
   p_user_id uuid, p_username text, p_name text
 ) returns uuid language plpgsql security definer
-set search_path = public, auth, public
+set search_path = public, auth, extensions
 as $$
 declare mid uuid; uname text;
 begin
@@ -100,7 +100,7 @@ $$;
 create or replace function public.nexfit_admin_set_moderator_active(
   p_moderator_id uuid, p_active boolean
 ) returns void language plpgsql security definer
-set search_path = public, auth, public
+set search_path = public, auth, extensions
 as $$
 begin
   if not public.nexfit_is_admin() then raise exception 'Admin access required'; end if;
@@ -113,7 +113,7 @@ $$;
 create or replace function public.nexfit_admin_reset_moderator_password(
   p_moderator_id uuid, p_new_password text
 ) returns void language plpgsql security definer
-set search_path = public, auth, public
+set search_path = public, auth, extensions
 as $$
 declare target_user uuid;
 begin
@@ -125,6 +125,7 @@ begin
   update auth.users
   set encrypted_password=crypt(p_new_password, gen_salt('bf')), updated_at=now()
   where id=target_user;
+  delete from auth.sessions where user_id=target_user;
 end;
 $$;
 
@@ -175,21 +176,20 @@ for select to authenticated using (public.nexfit_is_admin() or actor_user_id=aut
 
 create or replace function public.log_customer_activity()
 returns trigger language plpgsql security definer
-set search_path = pg_catalog, public, auth
+set search_path = pg_catalog, public, auth, extensions
 as $$
 declare actor text; actor_id uuid;
 begin
   actor_id := auth.uid();
-  select p.username into actor from public.nexfit_user_profiles p where p.user_id=actor_id;
-  if actor is null then
-    select m.name into actor from public.moderators m
-    where m.id=coalesce(new.moderator_id,old.moderator_id);
-  end if;
   if tg_op='DELETE' then
+    select p.username into actor from public.nexfit_user_profiles p where p.user_id=actor_id;
+    if actor is null then select m.name into actor from public.moderators m where m.id=old.moderator_id; end if;
     insert into public.activity_logs(customer_id,action,details,actor_name,actor_user_id)
     values(old.id,'Customer deleted',old.phone,coalesce(actor,'System'),actor_id);
     return old;
   elsif tg_op='INSERT' then
+    select p.username into actor from public.nexfit_user_profiles p where p.user_id=actor_id;
+    if actor is null then select m.name into actor from public.moderators m where m.id=new.moderator_id; end if;
     insert into public.activity_logs(customer_id,action,details,actor_name,actor_user_id)
     values(new.id,'Customer added',new.phone,coalesce(actor,'System'),actor_id);
     return new;
@@ -220,3 +220,5 @@ grant execute on function public.nexfit_admin_reset_moderator_password(uuid,text
 grant select on public.nexfit_user_profiles to authenticated;
 grant select,insert,update,delete on public.moderators, public.customers to authenticated;
 grant select on public.activity_logs to authenticated;
+
+grant usage, select on all sequences in schema public to authenticated;
