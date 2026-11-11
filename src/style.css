@@ -109,3 +109,9 @@ button:focus-visible{outline:3px solid #d8b76d80;outline-offset:2px}
 @keyframes balance-shine{0%,55%{left:-55%}100%{left:130%}}
 @media(max-width:680px){.balance-chip{padding:6px 8px;gap:5px}.balance-chip span{display:none}.balance-chip b{font-size:12px}.admin-balance{min-width:90px}.phone-line .phone{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.balance-chip:after,.admin-balance:after{animation:none}}
+
+.developer-signature{display:inline-grid;gap:1px;margin-left:12px;padding:5px 12px;border-left:1px solid #c69a45;vertical-align:middle}
+.developer-signature b{font-size:12px;letter-spacing:.5px;background:linear-gradient(100deg,#8b6523 0%,#e4c778 35%,#fff1b8 50%,#b3832e 70%,#8b6523 100%);background-size:220% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:developer-shine 3.8s linear infinite;text-shadow:0 0 12px #c69a4533}
+.developer-signature small{font-size:8px;letter-spacing:1.5px;color:#9a742d;font-weight:800}
+@keyframes developer-shine{to{background-position:220% center}}
+@media(prefers-reduced-motion:reduce){.developer-signature b{animation:none}}
