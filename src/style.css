@@ -307,3 +307,49 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease,backg
 @keyframes seller-bar-shine{0%,100%{filter:brightness(1)}50%{filter:brightness(1.28)}}
 @media(max-width:680px){.seller-chart{width:min(100%,270px);min-width:0;padding:9px 10px 8px}.seller-chart-list{max-height:160px}}
 @media(prefers-reduced-motion:reduce){.seller-chart:before,.seller-bar{animation:none}}
+
+
+/* NEXFIT Top Sellers — premium vertical bar graph */
+.seller-chart{width:min(100%,340px);min-width:270px}
+.seller-vertical-list{
+  display:flex;align-items:flex-end;gap:10px;
+  min-height:158px;max-height:190px;overflow-x:auto;overflow-y:hidden;
+  padding:12px 3px 7px;scrollbar-width:thin;scrollbar-color:#b99348 transparent;
+}
+.seller-vertical-item{
+  flex:0 0 34px;min-width:34px;height:138px;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  gap:4px;padding:0;animation:seller-row-in .4s ease-out both;
+}
+.seller-vertical-total{
+  color:#ffe2a0;font-size:9px;font-variant-numeric:tabular-nums;
+  text-shadow:0 0 8px #e8bd5a55;line-height:1;
+}
+.seller-bar-column{
+  height:92px;width:22px;display:flex;align-items:flex-end;justify-content:center;
+  border-bottom:1px solid #ffffff40;border-radius:5px 5px 2px 2px;
+  background:linear-gradient(180deg,#ffffff08,#ffffff03);
+  overflow:hidden;
+}
+.seller-vertical-item .seller-bar{
+  display:block;width:100%;height:0;min-height:2px;border-radius:5px 5px 1px 1px;
+  transform-origin:center bottom;
+  background:linear-gradient(180deg,#fff0b8,var(--seller-color),color-mix(in srgb,var(--seller-color) 65%,#101719));
+  box-shadow:0 0 9px color-mix(in srgb,var(--seller-color) 65%,transparent),0 0 16px color-mix(in srgb,var(--seller-color) 25%,transparent);
+  animation:seller-vertical-grow .9s cubic-bezier(.2,.8,.2,1) both,seller-bar-shine 3s ease-in-out 1s infinite;
+}
+.seller-vertical-item .seller-rank{width:15px;height:15px;flex:0 0 15px;font-size:7px}
+.seller-vertical-name{
+  display:block;width:48px;max-width:48px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  text-align:center;color:#e9e8df;font-size:7px;line-height:1.2;
+}
+.seller-vertical-item:nth-child(n+11) .seller-bar{--seller-color:#75abc9}
+@keyframes seller-vertical-grow{from{transform:scaleY(.02);opacity:.5}to{transform:scaleY(1);opacity:1}}
+@media(max-width:680px){
+ .seller-chart{width:100%;min-width:0}
+ .seller-vertical-list{min-height:150px;max-height:180px;gap:8px}
+ .seller-vertical-item{flex-basis:32px;min-width:32px;height:132px}
+ .seller-bar-column{height:86px;width:20px}
+ .seller-vertical-name{width:44px;max-width:44px;font-size:7px}
+}
+@media(prefers-reduced-motion:reduce){.seller-vertical-item,.seller-vertical-item .seller-bar{animation:none}}
