@@ -93,3 +93,19 @@ button:focus-visible{outline:3px solid #d8b76d80;outline-offset:2px}
 .account-active,.account-off{font-size:9px;font-weight:800;padding:5px 8px;border-radius:20px;background:#e7f4e9;color:#327347}
 .account-off{background:#f9e9e5;color:#a34b3e}
 @media(max-width:680px){.header-right{gap:5px}.user-chip{display:none}.logout{padding:6px 8px}.auth-card{padding:24px 19px}.mod-account{gap:7px}.mod-account-main{flex-basis:100%}}
+
+/* NEXFIT customer names, quick WhatsApp actions and animated moderator balances */
+.customer-identity{display:grid;gap:2px;margin:8px 0 5px}
+.customer-name{font-size:14px;color:#283329;overflow-wrap:anywhere}
+.phone-line{display:flex;align-items:center;gap:7px}
+.phone-line .phone{margin:2px 0;font-size:18px}
+.copy-phone{padding:7px 8px;color:#896522;background:#fff9e9;border-color:#e7d5ae}
+.balance-chip,.admin-balance{position:relative;overflow:hidden;display:flex;align-items:center;gap:7px;border:1px solid #c69a45;background:linear-gradient(115deg,#171e18,#3b301b 55%,#171e18);color:#f4dfaa;box-shadow:0 0 15px #c69a4530,inset 0 0 12px #fff1;border-radius:12px;padding:7px 11px}
+.balance-chip:after,.admin-balance:after{content:"";position:absolute;inset:-40% auto -40% -55%;width:35%;background:linear-gradient(90deg,transparent,#fff8,transparent);transform:skewX(-22deg);animation:balance-shine 4s ease-in-out infinite}
+.balance-chip span,.admin-balance small{font-size:8px;letter-spacing:1px;font-weight:800;color:#d8bd7c}
+.balance-chip b,.admin-balance b{font-size:14px;color:#ffe6a8;white-space:nowrap}
+.admin-balance{display:grid;gap:2px;min-width:105px;padding:8px 10px}
+.admin-balance button{position:relative;z-index:1;padding:4px 7px;font-size:9px;background:#f5e6bf;color:#624719;border:0}
+@keyframes balance-shine{0%,55%{left:-55%}100%{left:130%}}
+@media(max-width:680px){.balance-chip{padding:6px 8px;gap:5px}.balance-chip span{display:none}.balance-chip b{font-size:12px}.admin-balance{min-width:90px}.phone-line .phone{font-size:17px}}
+@media(prefers-reduced-motion:reduce){.balance-chip:after,.admin-balance:after{animation:none}}
