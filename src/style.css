@@ -260,3 +260,50 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease,backg
 @media(prefers-reduced-motion:reduce){
   .seller-chart:before,.seller-point-halo{animation:none}
 }
+
+
+/* Premium glossy compact Top Sellers — original horizontal bar-chart layout */
+.seller-chart{
+  width:min(100%,248px);min-width:218px;padding:9px 10px 8px;
+  border:1px solid #b99348;border-radius:13px;position:relative;isolation:isolate;overflow:hidden;
+  background:radial-gradient(ellipse at 92% 0%,#d8ae5540 0,transparent 38%),radial-gradient(ellipse at 5% 100%,#2d8b8050 0,transparent 42%),linear-gradient(145deg,#111a19 0%,#202b29 48%,#151b20 100%);
+  box-shadow:0 8px 22px #10191635,0 0 0 1px #ffffff0b inset,0 1px 0 #fff3 inset;
+  animation:seller-card-in .55s ease-out both;
+}
+.seller-chart:before{content:"";position:absolute;z-index:-1;inset:-70% auto -70% -45%;width:34%;transform:skewX(-24deg);background:linear-gradient(90deg,transparent,#ffffff18,transparent);animation:seller-glass-sweep 6s ease-in-out infinite}
+.seller-chart:after{content:"";position:absolute;z-index:-1;right:-38px;top:-48px;width:112px;height:112px;border:1px solid #e5c77824;border-radius:50%;box-shadow:0 0 0 12px #e5c77808,0 0 0 25px #e5c77806;pointer-events:none}
+.seller-chart-head{padding-bottom:6px;border-bottom:1px solid #ffffff18}
+.seller-chart-head small{font-size:6px;letter-spacing:1.6px;color:#e0bd6d}
+.seller-chart-head b{font-size:11px;letter-spacing:1px;color:#fff4d5;text-shadow:0 0 12px #e9c66a55}
+.seller-chart-head>span{font-size:7px;color:#e9d7a7;background:#ffffff0c;border:1px solid #d6b76b55;padding:3px 6px}
+.seller-chart-list{gap:7px;padding:8px 0 7px;max-height:178px;overflow:auto}
+.seller-chart-row{gap:6px}
+.seller-rank{width:17px;height:17px;flex-basis:17px;border-radius:5px;font-size:7px;background:#ffffff12;color:#d9d6c9}
+.seller-rank.rank-1{background:linear-gradient(145deg,#ffe8a4,#c9952d);color:#503710;box-shadow:0 0 9px #e9bd5550}
+.seller-rank.rank-2{background:linear-gradient(145deg,#f4f7f8,#82949c);color:#24333a}
+.seller-rank.rank-3{background:linear-gradient(145deg,#f6d4b7,#ad704b);color:#512d1a}
+.seller-chart-info{flex:1;min-width:0}
+.seller-chart-label{margin-bottom:4px}
+.seller-chart-name{display:flex;align-items:center;gap:5px;min-width:0}
+.seller-chart-label b{font-size:8px;color:#e9e8df}
+.seller-chart-label strong{font-size:8px;color:#ffe2a0;text-shadow:0 0 8px #e8bd5a35}
+.seller-mini-dot{width:6px;height:6px;flex:0 0 6px;border-radius:50%;background:#c49332;box-shadow:0 0 7px currentColor,0 0 0 2px #ffffff12}
+.seller-mini-dot.rank-1,.seller-bar.rank-1{--seller-color:#e2b74e}
+.seller-mini-dot.rank-2,.seller-bar.rank-2{--seller-color:#9eafb7}
+.seller-mini-dot.rank-3,.seller-bar.rank-3{--seller-color:#c68a62}
+.seller-mini-dot.rank-4,.seller-bar.rank-4{--seller-color:#55a995}
+.seller-mini-dot.rank-5,.seller-bar.rank-5{--seller-color:#819be1}
+.seller-mini-dot.rank-6,.seller-bar.rank-6{--seller-color:#b58acb}
+.seller-mini-dot.rank-7,.seller-bar.rank-7{--seller-color:#d889a0}
+.seller-mini-dot.rank-8,.seller-bar.rank-8{--seller-color:#9fbd70}
+.seller-mini-dot.rank-9,.seller-bar.rank-9{--seller-color:#d5a052}
+.seller-mini-dot.rank-10,.seller-bar.rank-10{--seller-color:#75abc9}
+.seller-mini-dot{background:var(--seller-color);color:var(--seller-color)}
+.seller-track{height:6px;border-radius:12px;background:#ffffff13;box-shadow:0 1px 2px #0008 inset,0 0 0 1px #ffffff09;overflow:hidden}
+.seller-bar{height:100%;min-width:0;border-radius:12px;transform-origin:left center;background:linear-gradient(90deg,color-mix(in srgb,var(--seller-color) 72%,#101719),var(--seller-color),#fff0b8);box-shadow:0 0 8px color-mix(in srgb,var(--seller-color) 70%,transparent),0 0 15px color-mix(in srgb,var(--seller-color) 30%,transparent);animation:seller-bar-grow .95s cubic-bezier(.2,.8,.2,1) both,seller-bar-shine 3s ease-in-out 1s infinite}
+.seller-chart-foot{border-top:1px solid #ffffff18;padding-top:5px;font-size:7px;color:#b8b4a5}
+.seller-empty{font-size:9px;color:#d2c7a9;padding:8px 0}
+@keyframes seller-glass-sweep{0%,58%{left:-48%}100%{left:145%}}
+@keyframes seller-bar-shine{0%,100%{filter:brightness(1)}50%{filter:brightness(1.28)}}
+@media(max-width:680px){.seller-chart{width:min(100%,270px);min-width:0;padding:9px 10px 8px}.seller-chart-list{max-height:160px}}
+@media(prefers-reduced-motion:reduce){.seller-chart:before,.seller-bar{animation:none}}
