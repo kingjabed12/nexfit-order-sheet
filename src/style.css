@@ -353,3 +353,130 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease,backg
  .seller-vertical-name{width:44px;max-width:44px;font-size:7px}
 }
 @media(prefers-reduced-motion:reduce){.seller-vertical-item,.seller-vertical-item .seller-bar{animation:none}}
+
+
+/* NEXFIT Premium Dark Glassmorphism — shared Admin + Moderator UI */
+:root{
+ --glass-bg:rgba(20,27,25,.78);--glass-panel:rgba(255,255,255,.075);
+ --glass-border:rgba(226,198,132,.24);--glass-text:#f5f0e4;
+ --glass-muted:#b4b4a9;--glass-gold:#e0bd70;
+}
+html{min-height:100%;background:#0b100f}
+body{
+ color:var(--glass-text)!important;
+ background:
+  radial-gradient(ellipse at 12% 8%,rgba(181,139,57,.17),transparent 34%),
+  radial-gradient(ellipse at 88% 28%,rgba(79,111,101,.2),transparent 38%),
+  linear-gradient(135deg,#090e0d 0%,#17201d 52%,#0c1211 100%) fixed!important;
+}
+header{
+ background:rgba(8,13,12,.76)!important;
+ border-bottom:1px solid rgba(224,189,112,.34)!important;
+ box-shadow:0 8px 32px #0006;
+ backdrop-filter:blur(22px) saturate(145%);
+ -webkit-backdrop-filter:blur(22px) saturate(145%);
+}
+main{position:relative}
+.hero{
+ color:#f5f0e4!important;
+ background:linear-gradient(125deg,rgba(255,255,255,.105),rgba(255,255,255,.035))!important;
+ border:1px solid var(--glass-border)!important;
+ box-shadow:0 12px 35px #0003,inset 0 1px 0 #ffffff18!important;
+ backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+}
+.hero h1{color:#fff5dc!important}
+.hero p,.hero label{color:var(--glass-muted)!important}
+.hero small{color:var(--glass-gold)!important}
+.panel,.stat,.quickstats>div,.record,.modreport,.modrow,.log{
+ color:var(--glass-text)!important;
+ background:linear-gradient(135deg,rgba(255,255,255,.105),rgba(255,255,255,.035))!important;
+ border:1px solid var(--glass-border)!important;
+ box-shadow:0 10px 30px #0003,inset 0 1px 0 #ffffff16!important;
+ backdrop-filter:blur(18px) saturate(135%);
+ -webkit-backdrop-filter:blur(18px) saturate(135%);
+}
+.panelhead{border-bottom:1px solid #ffffff18!important;color:#fff1cf!important}
+.panelhead span,.stat small,.meta,.recordtop,.modrow span,.log small{color:#b8b8ac!important}
+.stat b,.quickstats b,.record strong,.modrow b,.modreporthead{color:#fff4dc!important}
+.quickstats svg{color:#e0bd70!important}
+.record>p{background:rgba(255,255,255,.07)!important;color:#ddd8ca!important}
+.customer-name{color:#fff2d6!important}
+.customer-note{background:linear-gradient(120deg,rgba(194,151,65,.2),rgba(255,255,255,.055))!important;border-color:#c69a4577!important}
+.customer-note p{color:#fff0c8!important}
+.assigned,.phone{color:#f0d28d!important}
+button,input,select,textarea{
+ color:#f5efdf;
+ background:rgba(255,255,255,.085);
+ border:1px solid rgba(231,211,164,.22);
+}
+input::placeholder,textarea::placeholder{color:#a6aaa1}
+input:focus,select:focus,textarea:focus{
+ border-color:#d7b66c!important;box-shadow:0 0 0 3px #d7b66c24!important;
+ background:rgba(255,255,255,.12);
+}
+select option{background:#18211e;color:#f5efdf}
+button{color:#f0e5c9;box-shadow:0 3px 12px #0002}
+button:hover{border-color:#d9b96e;box-shadow:0 7px 20px #0004,0 0 14px #c69a4522}
+.primary{
+ background:linear-gradient(135deg,#b78b39,#76551f)!important;
+ color:#fff6df!important;border-color:#e3c47e!important;
+ box-shadow:0 5px 18px #c69a4530!important;
+}
+.primary:hover{background:linear-gradient(135deg,#d2ad60,#8b6728)!important}
+.soft{background:rgba(218,184,111,.14)!important;color:#f1d99f!important;border-color:#c69a4566!important}
+.tabs{border-color:#ffffff20!important}
+.tabs button{color:#b5b8ae!important}
+.tabs button.active{color:#ffe4a5!important;background:rgba(218,184,111,.1)!important;border-color:#d6b56c!important}
+.search{background:rgba(255,255,255,.075)!important;border-color:#ffffff20!important;color:#d9d4c7}
+.search input{background:transparent!important;color:#fff!important}
+.bottom{
+ background:rgba(9,14,13,.88)!important;border-top:1px solid #d2ae6544!important;
+ backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
+}
+.bottom button{background:transparent!important;color:#aaa99f!important}
+.bottom .chosen{color:#f1d18b!important}
+.modal{
+ color:#f5efdf!important;
+ background:linear-gradient(145deg,rgba(34,43,39,.97),rgba(15,22,20,.97))!important;
+ border:1px solid #d5b66b77!important;
+ box-shadow:0 25px 80px #000b,inset 0 1px 0 #ffffff18!important;
+ backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+}
+.modalhead b,.form label{color:#f5e8c8!important}
+.form p,.auth-card>p{color:#c0beb2!important}
+.shade{background:rgba(2,7,6,.72)!important;backdrop-filter:blur(7px)}
+.summary{background:rgba(255,255,255,.08)!important;color:#eee5d1!important}
+.dupe{background:rgba(155,55,45,.18)!important;color:#ffc4b9!important;border-color:#b95d5277!important}
+.toast{background:rgba(20,28,25,.94)!important;color:#fff2d2!important;backdrop-filter:blur(18px)}
+.balance-chip,.admin-balance{background:linear-gradient(120deg,rgba(218,178,91,.22),rgba(15,22,19,.84))!important;border-color:#d7b66c!important}
+.user-chip{background:rgba(224,189,112,.09)}
+.logout{background:rgba(255,255,255,.09)!important;color:#f5dfa8!important}
+.auth-shell{
+ background:radial-gradient(ellipse at 20% 10%,#7c602a55,transparent 35%),
+ radial-gradient(ellipse at 85% 80%,#41675b55,transparent 40%),
+ linear-gradient(135deg,#080d0c,#17211d 60%,#0b1110)!important;
+}
+.auth-card{
+ color:#f5efdf!important;
+ background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045))!important;
+ border:1px solid #d9bb7666!important;border-radius:22px;
+ box-shadow:0 25px 80px #0008,inset 0 1px 0 #ffffff22!important;
+ backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%);
+}
+.auth-card h1,.auth-form label{color:#fff0ce!important}
+.auth-form input{background:rgba(255,255,255,.09)!important;color:#fff!important}
+.auth-mark{background:rgba(224,189,112,.16)!important;color:#f0d18a!important}
+.auth-link{color:#f0d18a!important}
+footer{color:#aaa99e!important}
+.status.green,.reportcounts .green{background:rgba(55,139,86,.2)!important;color:#a8edbd!important}
+.status.amber,.reportcounts .amber{background:rgba(181,128,32,.2)!important;color:#f7d78e!important}
+.status.red,.reportcounts .red{background:rgba(176,65,56,.2)!important;color:#ffb7ad!important}
+.status.blue,.reportcounts .blue{background:rgba(57,112,183,.22)!important;color:#b8d7ff!important}
+.status.violet{background:rgba(120,85,170,.22)!important;color:#d8c1ff!important}
+.status.gray{background:rgba(255,255,255,.1)!important;color:#ddd!important}
+@media(max-width:680px){
+ main{background:transparent}
+ .hero{padding:15px!important}
+ .panel,.stat,.quickstats>div,.record,.modreport,.modrow,.log{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+}
+@media(prefers-reduced-motion:reduce){.panel,.record,.stat,.quickstats>div{scroll-behavior:auto}}
