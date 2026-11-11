@@ -118,6 +118,13 @@ drop trigger if exists nexfit_customer_commission on public.customers;
 create trigger nexfit_customer_commission after insert or update or delete on public.customers
  for each row execute function public.nexfit_customer_commission_trigger();
 
+-- Credit existing Confirm records once when this migration is first applied.
+insert into public.moderator_balance_transactions(moderator_id,customer_id,amount,kind,note,source_event_id)
+select moderator_id,id,20,'commission','Opening balance for existing confirmed customer','backfill-confirm:'||id::text
+from public.customers
+where status='Confirm' and moderator_id is not null
+on conflict(source_event_id) do nothing;
+
 create or replace function public.nexfit_admin_set_moderator_balance(p_moderator_id uuid,p_new_balance numeric,p_note text default 'Admin balance adjustment')
 returns numeric language plpgsql security definer
 set search_path=public set row_security=off as $$
@@ -141,6 +148,7 @@ revoke all on function public.nexfit_is_active_user() from public,anon;
 revoke all on function public.nexfit_is_admin() from public,anon;
 grant execute on function public.nexfit_is_active_user() to authenticated;
 grant execute on function public.nexfit_is_admin() to authenticated;
-grant select on public.moderator_balance_transactions to authenticated;
-grant select on public.customers,public.moderators,public.activity_logs to authenticated;
+revoke all on public.customers,public.moderators,public.activity_logs,public.moderator_balance_transactions from anon;
+grant select,insert,update,delete on public.customers to authenticated;
+grant select on public.moderators,public.activity_logs,public.moderator_balance_transactions to authenticated;
 commit;
