@@ -555,3 +555,18 @@ footer{color:#aaa99e!important}
  .logo img{width:190px;height:48px;max-width:48vw}
  .auth-card>img{width:min(240px,84%);height:62px}
 }
+
+
+/* Correct NEXFIT stacked brand mark: full monogram above wordmark */
+header{height:88px;padding-top:4px;padding-bottom:4px}
+.logo{width:112px;height:80px;display:flex;align-items:center;justify-content:flex-start;overflow:visible;flex:0 0 auto}
+.logo img{display:block;width:108px;height:78px;max-width:none;object-fit:contain;object-position:center;filter:drop-shadow(0 2px 5px rgba(0,0,0,.42))}
+.auth-card>img{display:block;width:190px;height:164px;object-fit:contain;margin:0 auto 8px;filter:drop-shadow(0 3px 7px rgba(0,0,0,.28))}
+@media(max-width:680px){
+ header{height:82px;padding:3px 10px}
+ .logo{width:82px;height:74px}
+ .logo img{width:80px;height:72px}
+ .header-right{gap:6px}
+ .logout{padding:6px 8px}
+ .auth-card>img{width:180px;height:154px}
+}
