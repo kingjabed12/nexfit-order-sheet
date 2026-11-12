@@ -840,3 +840,9 @@ footer{color:#83968a!important}
 .balance-chip,.admin-balance,.home-balance{background:linear-gradient(115deg,#0b1710,#173a27 55%,#342b19)!important;border-color:#c4a15b!important;color:#f4dfa7!important}.balance-chip b,.admin-balance b,.home-balance b{color:#ffe8ac!important}
 @media(max-width:680px){main{padding-bottom:calc(112px + env(safe-area-inset-bottom))!important}.bottom{position:fixed!important;display:flex!important;inset:auto 0 0 0!important;z-index:999!important;padding:7px 4px calc(7px + env(safe-area-inset-bottom))!important}.bottom button{color:#b5c4b8!important}.bottom button.chosen{color:#fff0c5!important}.modal{border-radius:20px 20px 14px 14px!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* SteadFast connection diagnostics */
+.steadfast-check{margin-top:4px!important}
+.steadfast-health{padding:11px 13px;border-radius:11px;font-size:12px;font-weight:700;line-height:1.5}
+.steadfast-health.ok{background:#173d2a;color:#a8e0b7;border:1px solid #326c49}
+.steadfast-health.failed{background:#482522;color:#ffc0b5;border:1px solid #82453c}
