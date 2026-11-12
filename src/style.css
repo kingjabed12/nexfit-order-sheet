@@ -654,3 +654,7 @@ header{height:88px;padding-top:4px;padding-bottom:4px}
 .image-preview-dialog{position:relative;width:min(92vw,620px);max-height:88dvh;display:flex;align-items:center;justify-content:center;padding:12px;border:1px solid rgba(224,189,112,.55);border-radius:16px;background:linear-gradient(145deg,#202a25,#101714);box-shadow:0 24px 80px #000b}
 .image-preview-dialog>img{display:block;max-width:100%;max-height:calc(88dvh - 24px);width:auto;height:auto;object-fit:contain;border-radius:9px}
 .image-preview-close{position:absolute;z-index:1;top:7px;right:7px;width:36px;height:36px;display:grid;place-items:center;padding:0!important;border-radius:50%!important;background:rgba(8,13,12,.82)!important;color:#f5dfa8!important;border:1px solid #d7b66c88!important}
+
+
+/* Dedicated SteadFast sent-parcels section */
+.steadfast-record .steadfast-cn{margin-top:14px}
