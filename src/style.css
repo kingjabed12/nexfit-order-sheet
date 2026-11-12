@@ -930,3 +930,13 @@ footer{color:#83968a!important}
   body > nav.bottom button { flex: 1 1 0 !important; min-width: 0 !important; }
   body { padding-bottom: 0 !important; }
 }
+
+
+/* Remove decorative status dots from customer-list status selectors. */
+.rowactions select.status-pick {
+  background-image: none !important;
+  background-repeat: initial !important;
+  background-position: initial !important;
+  background-size: initial !important;
+  padding-left: 10px !important;
+}
