@@ -636,3 +636,12 @@ header{height:88px;padding-top:4px;padding-bottom:4px}
 .compact-size-row>button:disabled{opacity:.35;cursor:not-allowed}
 .compact-size-qty>small{text-align:center;font-size:9px;color:#d9c58e;border-top:1px solid #ffffff16;padding-top:3px}
 .product-pick-option{align-content:start}
+
+/* SteadFast parcel entry */
+.steadfast-action{background:linear-gradient(135deg,#1b2920,#111a15);color:#f2d58e;border-color:#b78b3b;white-space:nowrap}
+.steadfast-action:disabled{opacity:.58;cursor:not-allowed;transform:none}
+.steadfast-cn{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:11px;padding:11px;border:1px solid #d6bb7b;border-radius:10px;background:linear-gradient(120deg,#fff8e6,#fffdf7)}
+.steadfast-cn div{display:grid;gap:3px;min-width:0}.steadfast-cn small{font-size:9px;letter-spacing:.7px;color:#85621e;font-weight:800}.steadfast-cn b{font-size:16px;color:#17251c;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.steadfast-cn button{background:#1c2920;color:#f2d58e;border-color:#b78b3b;white-space:nowrap}
+.steadfast-state{margin-top:9px;padding:8px 10px;border-radius:8px;background:#fff4dc;color:#87611b;font-size:11px;font-weight:700}
+.steadfast-form{gap:12px}.steadfast-intro{display:grid;gap:4px;padding:14px;border:1px solid #e4d2a8;border-radius:12px;background:linear-gradient(130deg,#fff8e7,#fffdf8)}.steadfast-intro span{font-size:9px;font-weight:800;letter-spacing:1px;color:#97702b}.steadfast-intro b{font-size:21px;color:#17251c}.steadfast-intro small{font-size:11px;color:#7d8178;line-height:1.5}.steadfast-source{display:flex;justify-content:space-between;gap:8px;padding:9px 11px;border-radius:8px;background:#f5f2e9;color:#69736a;font-size:10px}.steadfast-source b{color:#876421}.steadfast-form label{font-size:11px}.steadfast-form .cod-field input{border-color:#c49a4d;background:#fffaf0;font-size:18px;font-weight:800}.steadfast-warning{display:flex;gap:8px;align-items:flex-start;padding:11px;border:1px solid #ead9b4;border-radius:9px;background:#fff8e8;color:#765b27;font-size:10px;line-height:1.55}.steadfast-warning svg{flex:0 0 auto}.steadfast-send{min-height:48px;font-size:13px}
+@media(max-width:680px){.steadfast-action{font-size:10px;padding:8px 7px}.steadfast-cn{align-items:flex-start}.steadfast-cn button{font-size:10px;padding:8px}.steadfast-source{flex-direction:column;gap:4px}}
