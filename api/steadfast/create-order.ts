@@ -1,5 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
+declare const process: { env: Record<string, string | undefined> };
+
 const json = (res: any, status: number, body: Record<string, unknown>) =>
   res.status(status).json(body);
 
