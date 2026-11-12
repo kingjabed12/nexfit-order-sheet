@@ -846,3 +846,43 @@ footer{color:#83968a!important}
 .steadfast-health{padding:11px 13px;border-radius:11px;font-size:12px;font-weight:700;line-height:1.5}
 .steadfast-health.ok{background:#173d2a;color:#a8e0b7;border:1px solid #326c49}
 .steadfast-health.failed{background:#482522;color:#ffc0b5;border:1px solid #82453c}
+
+
+/* Mobile modal visibility hotfix: keep dialogs above the dimmed page */
+.shade{
+  position:fixed!important;
+  inset:0!important;
+  z-index:20000!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:16px!important;
+  background:rgba(1,8,4,.58)!important;
+  -webkit-backdrop-filter:blur(3px)!important;
+  backdrop-filter:blur(3px)!important;
+}
+.shade>.modal{
+  position:relative!important;
+  z-index:1!important;
+  display:block!important;
+  flex:0 1 480px!important;
+  width:min(100%,480px)!important;
+  max-width:480px!important;
+  max-height:min(88dvh,820px)!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  background:#12251a!important;
+  color:#f4ead1!important;
+  border:1px solid #c6a45f!important;
+  box-shadow:0 24px 80px rgba(0,0,0,.72)!important;
+}
+.shade>.modal .modalhead{position:sticky;top:-18px;z-index:2;background:#12251a;padding:4px 0 12px}
+.shade>.modal .modalhead b,.shade>.modal .form label{color:#f4ead1!important}
+.shade>.modal input,.shade>.modal select,.shade>.modal textarea{background:#0b1911!important;color:#f4f1e7!important;border-color:#49634e!important}
+@media(max-width:680px){
+  .shade{align-items:center!important;padding:12px!important}
+  .shade>.modal{width:100%!important;max-height:84dvh!important;border-radius:18px!important}
+}
