@@ -619,3 +619,5 @@ header{height:88px;padding-top:4px;padding-bottom:4px}
 .summary-original p{white-space:pre-wrap;font-size:11px;color:#c9c3b4;margin:0}
 .summary-original button{justify-self:start}
 @media(max-width:520px){.product-picker-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.product-upload{align-items:stretch;flex-direction:column}.product-upload small{flex:auto}.summary-product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.summary-product-item{display:grid;gap:5px;min-width:0}.summary-product-item button{display:inline-flex;align-items:center;justify-content:center;gap:4px;font-size:9px;padding:5px 3px}.summary-product-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:9px;border:1px solid #d7b66c55}
