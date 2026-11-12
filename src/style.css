@@ -910,3 +910,23 @@ footer{color:#83968a!important}
     padding-bottom: 0 !important;
   }
 }
+
+
+/* Final mobile nav fix: render navigation directly under body via React portal.
+   This prevents transformed/animated app wrappers from becoming its fixed-position containing block. */
+@media (max-width: 680px) {
+  body > #root > .app { overflow: visible !important; transform: none !important; filter: none !important; perspective: none !important; }
+  body > nav.bottom {
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    display: flex !important;
+    width: 100% !important;
+    min-height: 62px !important;
+    height: auto !important;
+    z-index: 2147483000 !important;
+    padding: 7px 4px calc(7px + env(safe-area-inset-bottom)) !important;
+    margin: 0 !important;
+  }
+  body > nav.bottom button { flex: 1 1 0 !important; min-width: 0 !important; }
+  body { padding-bottom: 0 !important; }
+}
