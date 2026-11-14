@@ -83,14 +83,39 @@ export default async function handler(req: any, res: any) {
 
   let result: any;
   try { result = await response.json(); } catch { result = null; }
-  // SteadFast may return application-level errors in a HTTP 200 response.
-  // Accept the documented response and common wrapped variants, but never
-  // mark an order as created unless a real consignment ID is present.
-  const consignment = result?.consignment ?? result?.data?.consignment ?? result?.data ?? result;
+
+  // SteadFast responses may be wrapped as { consignment: {...} }, nested
+  // under data/result, or returned as a one-item data array by some gateways.
+  const findConsignment = (value: any, depth = 0): any => {
+    if (depth > 5 || value == null) return null;
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        const found = findConsignment(item, depth + 1);
+        if (found) return found;
+      }
+      return null;
+    }
+    if (typeof value !== 'object') return null;
+    if (value.consignment_id !== undefined && value.consignment_id !== null && String(value.consignment_id).trim() !== '') {
+      return value;
+    }
+    for (const key of ['consignment', 'data', 'result', 'order']) {
+      if (value[key] !== undefined) {
+        const found = findConsignment(value[key], depth + 1);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  const consignment = findConsignment(result);
   const consignmentId = consignment?.consignment_id;
   const trackingCode = consignment?.tracking_code ?? result?.tracking_code ?? null;
-  const apiStatus = Number(result?.status ?? response.status);
-  if (response.ok && apiStatus === 200 && consignmentId !== undefined && consignmentId !== null && String(consignmentId).trim() !== '') {
+  const rawApiStatus = result?.status;
+  const apiStatus = Number(rawApiStatus ?? response.status);
+  const apiStatusText = String(rawApiStatus ?? '').toLowerCase();
+  const apiSuccess = rawApiStatus === undefined || apiStatus === 200 || apiStatusText === 'success';
+  if (response.ok && apiSuccess && consignmentId !== undefined && consignmentId !== null && String(consignmentId).trim() !== '') {
     const { error: saveError } = await db.rpc('nexfit_complete_steadfast_parcel', {
       p_customer_id: customerId,
       p_consignment_id: String(consignmentId),
@@ -105,16 +130,16 @@ export default async function handler(req: any, res: any) {
     return json(res, 200, { consignment_id: String(consignmentId), tracking_code: trackingCode ? String(trackingCode) : null, message: 'Parcel created successfully' });
   }
 
-  const apiRejected = Number.isFinite(apiStatus) && apiStatus >= 400 && apiStatus < 500;
+  const apiRejected = (Number.isFinite(apiStatus) && apiStatus >= 400 && apiStatus < 500) || apiStatusText === 'error';
   const definiteFailure = (response.status >= 400 && response.status < 500) || apiRejected;
   const details = result?.message || result?.error || result?.errors || result?.data?.message;
-  const message = (typeof details === 'string' ? details : details ? JSON.stringify(details) : `SteadFast returned HTTP ${response.status} (API status ${apiStatus})`).slice(0, 350);
+  const message = (typeof details === 'string' ? details : details ? JSON.stringify(details) : `SteadFast returned HTTP ${response.status} (API status ${String(rawApiStatus ?? apiStatus)})`).slice(0, 350);
   await db.rpc('nexfit_fail_steadfast_parcel', {
     p_customer_id: customerId,
     p_status: definiteFailure ? 'failed' : 'unknown',
     p_error: message,
   });
-  if (!definiteFailure) console.error('[steadfast] Unconfirmed create_order response', { httpStatus: response.status, apiStatus, responseBody: result });
+  if (!definiteFailure) console.error('[steadfast] Unconfirmed create_order response', { httpStatus: response.status, apiStatus: rawApiStatus ?? apiStatus, responseBody: result });
   return json(res, definiteFailure ? 502 : 202, {
     error: definiteFailure ? message : 'SteadFast-এর উত্তর নিশ্চিত করা যায়নি। Merchant Panel-এ আগে যাচাই করুন; পুনরায় পাঠাবেন না।',
     detail: message,
