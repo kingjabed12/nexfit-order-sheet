@@ -83,8 +83,13 @@ export default async function handler(req: any, res: any) {
 
   let result: any;
   try { result = await response.json(); } catch { result = null; }
-  const consignmentId = result?.consignment?.consignment_id;
-  if (response.ok && consignmentId !== undefined && consignmentId !== null) {
+  // SteadFast may return application-level errors in a HTTP 200 response.
+  // Accept the documented response and common wrapped variants, but never
+  // mark an order as created unless a real consignment ID is present.
+  const consignment = result?.consignment ?? result?.data?.consignment ?? result?.data ?? result;
+  const consignmentId = consignment?.consignment_id;
+  const apiStatus = Number(result?.status ?? response.status);
+  if (response.ok && apiStatus === 200 && consignmentId !== undefined && consignmentId !== null && String(consignmentId).trim() !== '') {
     const { error: saveError } = await db.rpc('nexfit_complete_steadfast_parcel', {
       p_customer_id: customerId,
       p_consignment_id: String(consignmentId),
@@ -98,14 +103,18 @@ export default async function handler(req: any, res: any) {
     return json(res, 200, { consignment_id: String(consignmentId), message: 'Parcel created successfully' });
   }
 
-  const definiteFailure = response.status >= 400 && response.status < 500;
-  const message = String(result?.message || result?.error || `SteadFast returned HTTP ${response.status}`).slice(0, 350);
+  const apiRejected = Number.isFinite(apiStatus) && apiStatus >= 400 && apiStatus < 500;
+  const definiteFailure = (response.status >= 400 && response.status < 500) || apiRejected;
+  const details = result?.message || result?.error || result?.errors || result?.data?.message;
+  const message = (typeof details === 'string' ? details : details ? JSON.stringify(details) : `SteadFast returned HTTP ${response.status} (API status ${apiStatus})`).slice(0, 350);
   await db.rpc('nexfit_fail_steadfast_parcel', {
     p_customer_id: customerId,
     p_status: definiteFailure ? 'failed' : 'unknown',
     p_error: message,
   });
+  if (!definiteFailure) console.error('[steadfast] Unconfirmed create_order response', { httpStatus: response.status, apiStatus, responseBody: result });
   return json(res, definiteFailure ? 502 : 202, {
-    error: definiteFailure ? message : 'Courier result could not be confirmed. Check SteadFast Merchant before retrying.',
+    error: definiteFailure ? message : 'SteadFast-এর উত্তর নিশ্চিত করা যায়নি। Merchant Panel-এ আগে যাচাই করুন; পুনরায় পাঠাবেন না।',
+    detail: message,
   });
 }
