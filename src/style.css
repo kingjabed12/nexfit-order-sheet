@@ -940,3 +940,11 @@ footer{color:#83968a!important}
   background-size: initial !important;
   padding-left: 10px !important;
 }
+
+/* Refined compact customer entry: only moderator, WhatsApp, customer details and note */
+.premium-customer-form .customer-info-editor{border-color:#d7b66c88;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025))}
+.premium-customer-form .customer-info-editor textarea{min-height:168px;line-height:1.7;border-color:#c6a45d88;background:rgba(255,255,255,.94);color:#26352b}
+.premium-customer-form .customer-info-editor>small{font-size:10px;color:#c8b98f;line-height:1.5}
+.premium-customer-form .highlight-note-editor{border-color:#e1b94f;background:linear-gradient(130deg,rgba(222,174,66,.22),rgba(255,255,255,.055));box-shadow:0 0 0 1px rgba(225,185,79,.12),0 8px 24px rgba(201,151,47,.12)}
+.premium-customer-form .highlight-note-editor textarea{min-height:92px;border-color:#d6a647;background:rgba(255,255,255,.96);color:#26352b}
+.premium-customer-form .highlight-note-editor textarea::placeholder{color:#988b70}
