@@ -88,6 +88,7 @@ export default async function handler(req: any, res: any) {
   // mark an order as created unless a real consignment ID is present.
   const consignment = result?.consignment ?? result?.data?.consignment ?? result?.data ?? result;
   const consignmentId = consignment?.consignment_id;
+  const trackingCode = consignment?.tracking_code ?? result?.tracking_code ?? null;
   const apiStatus = Number(result?.status ?? response.status);
   if (response.ok && apiStatus === 200 && consignmentId !== undefined && consignmentId !== null && String(consignmentId).trim() !== '') {
     const { error: saveError } = await db.rpc('nexfit_complete_steadfast_parcel', {
@@ -97,10 +98,11 @@ export default async function handler(req: any, res: any) {
     if (saveError) {
       return json(res, 202, {
         consignment_id: String(consignmentId),
+        tracking_code: trackingCode ? String(trackingCode) : null,
         message: 'SteadFast created the parcel, but NEXFIT could not save its CN. Contact Admin before retrying.',
       });
     }
-    return json(res, 200, { consignment_id: String(consignmentId), message: 'Parcel created successfully' });
+    return json(res, 200, { consignment_id: String(consignmentId), tracking_code: trackingCode ? String(trackingCode) : null, message: 'Parcel created successfully' });
   }
 
   const apiRejected = Number.isFinite(apiStatus) && apiStatus >= 400 && apiStatus < 500;
