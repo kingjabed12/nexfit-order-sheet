@@ -964,3 +964,32 @@ footer{color:#83968a!important}
 .size-quantity-grid button{min-width:25px;min-height:25px;padding:2px;border:1px solid #6b744d;background:#263b29;color:#f5e4b6;border-radius:6px}
 .size-quantity-grid strong{min-width:15px;text-align:center;color:#fff1c9;font-size:11px}
 .order-product-total{display:flex;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid #3b523d;color:#f1d99d;font-size:11px;font-weight:800}
+
+
+/* Premium contact method selector */
+.contact-method-picker{display:grid;gap:11px;padding:14px;border:1px solid #8e7545;border-radius:15px;background:linear-gradient(145deg,#172c20,#0e1d14);box-shadow:0 9px 24px #0003}
+.contact-method-picker>.field-caption{color:#e7ce91;font-size:10px;font-weight:850;letter-spacing:.8px}
+.contact-method-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.contact-method-options>button{display:flex;align-items:center;justify-content:flex-start;gap:10px;min-height:65px;padding:11px 12px;border:1px solid #49634d!important;border-radius:12px!important;background:linear-gradient(145deg,#1d3527,#14251b)!important;color:#cbd8cb!important;text-align:left;box-shadow:inset 0 1px #ffffff0a!important}
+.contact-method-options>button.selected{border:1px solid #d8b96f!important;background:linear-gradient(135deg,#31452f,#1c3022)!important;box-shadow:inset 0 0 0 1px #c6a45b55,0 5px 16px #0003!important;color:#ffe9b5!important}
+.contact-method-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#344c35;color:#f2d998;font-size:20px;flex:none}
+.contact-method-options>button>span:last-child{display:grid;gap:3px}
+.contact-method-options b{font-size:12px}
+.contact-method-options small{font-size:9px;color:#aab9aa}
+.contact-input{display:grid;gap:6px!important;color:#e2d1a7!important;font-size:9px!important;letter-spacing:.5px}
+.contact-input input{width:100%;min-height:46px;margin:0!important;border-radius:10px!important;background:#0b1911!important;color:#fff!important;border:1px solid #526a51!important}
+.contact-input input::placeholder{color:#8fa194!important}
+/* Larger, clearer size quantity controls */
+.order-product-picker{padding:15px!important;gap:13px!important;border-radius:16px!important;background:linear-gradient(145deg,#172e21,#0b1911)!important;box-shadow:0 10px 26px #0003}
+.order-product-choice{align-items:stretch!important;padding:12px!important;border-radius:13px!important;background:linear-gradient(145deg,#172a1e,#0e1b13)!important;border-color:#405b43!important;gap:13px!important}
+.order-product-choice>img{width:88px!important;height:100px!important;border-radius:11px!important;object-fit:cover}
+.order-product-choice-body{align-content:center!important;gap:11px!important}
+.order-product-choice-body>b{font-size:12px!important;color:#f5e6c2!important}
+.size-quantity-grid{gap:8px!important}
+.size-quantity-grid>label{gap:7px!important;font-size:11px!important;font-weight:850!important;color:#e8d39f!important}
+.size-quantity-grid>label>div{min-height:43px!important;gap:6px!important;padding:4px!important;border-radius:11px!important;background:#0a1810!important;border:1px solid #526d4d!important}
+.size-quantity-grid button{width:32px!important;min-width:32px!important;height:32px!important;min-height:32px!important;padding:0!important;border-radius:9px!important;border:1px solid #9a8048!important;background:linear-gradient(145deg,#354a32,#1b3021)!important;color:#ffe8b2!important;font-size:20px!important;font-weight:800!important;line-height:1!important;box-shadow:0 2px 5px #0004!important}
+.size-quantity-grid button:active{transform:scale(.92)!important;background:#52663b!important}
+.size-quantity-grid strong{min-width:22px!important;font-size:14px!important;font-weight:850!important;color:#fff4d7!important;font-variant-numeric:tabular-nums}
+.order-product-total{padding:11px 12px!important;border:1px solid #806c3f!important;border-radius:11px!important;background:#1b2b1d!important;font-size:12px!important;color:#f5dfa7!important}
+@media(max-width:420px){.order-product-choice>img{width:74px!important;height:90px!important}.size-quantity-grid{gap:5px!important}.size-quantity-grid>label>div{gap:3px!important}.size-quantity-grid button{width:29px!important;min-width:29px!important;height:30px!important;min-height:30px!important}.contact-method-options>button{padding:9px!important;gap:7px!important}}
