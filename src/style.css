@@ -1121,9 +1121,5 @@ footer{color:#83968a!important}
 .customer-cod-amount b{font-size:14px;color:#ffe7aa;font-variant-numeric:tabular-nums}
 
 
-/* Required delivery address field */
-.premium-customer-form .customer-address-required{border:1px solid #d7b66c88;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));}
-.premium-customer-form .customer-address-required textarea{width:100%;min-height:82px;line-height:1.6;border:1px solid #c6a45d88;border-radius:12px;background:rgba(255,255,255,.96);color:#26352b;padding:12px;resize:vertical;}
-.premium-customer-form .customer-address-required textarea::placeholder{color:#988b70;}
-.premium-customer-form .customer-address-required>small{font-size:10px;color:#c8b98f;line-height:1.5;}
-.premium-customer-form .customer-address-required .field-caption b,.premium-customer-form .order-product-picker .field-caption b,.premium-customer-form .cod-amount-field .field-caption b{color:#f0c96a;font-size:10px;}
+/* Mandatory COD and product indicators */
+.premium-customer-form .order-product-picker .field-caption b,.premium-customer-form .cod-amount-field .field-caption b{color:#f0c96a;font-size:10px;}
