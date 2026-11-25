@@ -1031,3 +1031,46 @@ footer{color:#83968a!important}
  .size-quantity-grid .quantity-stepper .quantity-plus::before{font-size:32px!important}
  .size-quantity-grid .quantity-stepper strong{font-size:17px!important}
 }
+
+
+/* Final fix: prevent M/L plus buttons from being pushed outside narrow size columns */
+.size-quantity-grid .quantity-stepper{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr)!important;
+ align-items:center!important;
+ justify-items:stretch!important;
+ gap:2px!important;
+ width:100%!important;
+ min-width:0!important;
+ box-sizing:border-box!important;
+}
+.size-quantity-grid .quantity-stepper button{
+ display:grid!important;
+ place-items:center!important;
+ flex:none!important;
+ width:100%!important;
+ min-width:0!important;
+ max-width:100%!important;
+ height:40px!important;
+ min-height:40px!important;
+ padding:0!important;
+ box-sizing:border-box!important;
+ font-size:24px!important;
+ line-height:1!important;
+ overflow:visible!important;
+}
+.size-quantity-grid .quantity-stepper .quantity-plus{
+ font-size:24px!important;
+ position:static!important;
+}
+.size-quantity-grid .quantity-stepper .quantity-plus::before{content:none!important;display:none!important}
+.size-quantity-grid .quantity-stepper strong{
+ min-width:0!important;
+ width:100%!important;
+ text-align:center!important;
+}
+@media(max-width:480px){
+ .size-quantity-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .size-quantity-grid .quantity-stepper{grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr)!important;gap:2px!important;padding:4px!important}
+ .size-quantity-grid .quantity-stepper button{height:40px!important;min-height:40px!important;font-size:23px!important}
+}
