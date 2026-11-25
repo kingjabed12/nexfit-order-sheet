@@ -1123,3 +1123,7 @@ footer{color:#83968a!important}
 
 /* Mandatory COD and product indicators */
 .premium-customer-form .order-product-picker .field-caption b,.premium-customer-form .cod-amount-field .field-caption b{color:#f0c96a;font-size:10px;}
+
+
+/* Moderator order-count adjustment controls */
+.order-count-admin{display:grid;gap:5px;align-content:center;padding:8px 10px;border:1px solid #c6a35c66;border-radius:12px;background:linear-gradient(135deg,#17231d,#263426);color:#f5e4b7;min-width:112px}.order-count-admin small{font-size:8px;letter-spacing:1px;font-weight:800;color:#d8bd7c}.order-count-admin>div{display:flex;align-items:center;justify-content:space-between;gap:10px}.order-count-admin b{font-size:17px;color:#ffe6a8;min-width:24px;text-align:center;font-variant-numeric:tabular-nums}.order-count-admin button{display:grid;place-items:center;width:29px;height:29px;border:1px solid #d9bd7c88;border-radius:8px;background:#ffffff12;color:#ffe6a8;cursor:pointer}.order-count-admin button:disabled{opacity:.35;cursor:not-allowed}.order-count-admin button:active:not(:disabled){transform:scale(.94)}
