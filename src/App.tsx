@@ -59,7 +59,7 @@ export default function App(){
  const count=(s:string)=>rows.filter(r=>r.status===s).length,today=rows.filter(r=>new Date(r.created_at).toDateString()===new Date().toDateString()).length;
  const actualOrderCount=(id:string)=>rows.filter(c=>c.moderator_id===id).length;
  const displayedOrderCount=(m:Moderator)=>Math.max(0,actualOrderCount(m.id)+Number(m.order_count_adjustment||0));
- const sellerRanking=useMemo(()=>mods.map(m=>({id:m.id,name:m.name,total:rows.filter(c=>c.moderator_id===m.id&&c.status==='Confirm').length})).filter(m=>m.total>0).sort((x,y)=>y.total-x.total||x.name.localeCompare(y.name)),[mods,rows]);
+ const sellerRanking=useMemo(()=>mods.map(m=>({id:m.id,name:m.name,total:rows.filter(c=>c.moderator_id===m.id&&c.status==='Confirm').length})).sort((x,y)=>y.total-x.total||x.name.localeCompare(y.name)),[mods,rows]);
  const topSellerMax=Math.max(1,...sellerRanking.map(m=>m.total));
  const thankModerator=async(id:string)=>{const moderator=mods.find(m=>m.id===id);const {count:confirmed,error}=await supabase.from('customers').select('*',{count:'exact',head:true}).eq('moderator_id',id);if(error){msg('অর্ডার Confirm হয়েছে। ধন্যবাদ!');return}msg('ধন্যবাদ, '+(moderator?.name||'Moderator')+'! আপনি এ পর্যন্ত '+(confirmed||0)+'টি অর্ডার যোগ করেছেন। 🎉')};
  const changeStatus=async(c:Customer,next:Status)=>{if(statusBusy===c.id)return;StatusBusy(c.id);try{const {error}=await supabase.rpc('nexfit_change_customer_status',{p_customer_id:c.id,p_status:next});if(error)throw error;await load();if(next==='Confirm'&&c.status!=='Confirm'&&c.moderator_id)await thankModerator(c.moderator_id);else msg('Status আপডেট হয়েছে')}catch(e){msg(e instanceof Error?e.message:'Status পরিবর্তন করা যায়নি')}finally{StatusBusy(null)}};
